@@ -9,6 +9,6 @@ export async function globalExceptionHandler(ctx: Context, next: Koa.Next) {
   }
   catch (e: unknown) {
     const error = e as Error
-    ctx.body = `internal server error: ${error.message}`
+    ctx.body = ctx.fail(`internal server error: ${error.message}`)
   }
 }

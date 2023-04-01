@@ -14,7 +14,7 @@ router.prefix('/usermodule')
 
 router.get('/finduserinfo/:username', async (ctx: Context) => {
   const { username } = ctx.params
-  ctx.body = `find user info by username: ${username}`
+  ctx.body = ctx.success(`find user info by username: ${username}`)
 })
 
 // post request -> add user

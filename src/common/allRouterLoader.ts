@@ -5,6 +5,7 @@ import body from 'koa-body'
 import json from 'koa-json'
 import type Koa from 'koa'
 import { globalExceptionHandler } from './GlobalExceptionHandler'
+import * as responseHandler from './ResponseProcess'
 
 // class for loading all router
 class RouterLoaderWrapper {
@@ -14,6 +15,7 @@ class RouterLoaderWrapper {
   // initialize router loader
   init(app: Koa) {
     this.app = app
+    Object.assign(this.app.context, responseHandler)
     this.loadAllRouterWrapper()
     process.nextTick(() => this.listen())
   }
