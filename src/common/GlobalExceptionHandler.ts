@@ -1,9 +1,9 @@
 import type { Context } from 'koa'
 import type Koa from 'koa'
+import Logger from '../common/Logger'
 
 export async function globalExceptionHandler(ctx: Context, next: Koa.Next) {
-  // eslint-disable-next-line no-console
-  console.log('enter common exception handler')
+  Logger.error('enter common exception handler')
   try {
     await next()
   }

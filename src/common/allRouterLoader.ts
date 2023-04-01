@@ -6,6 +6,7 @@ import json from 'koa-json'
 import type Koa from 'koa'
 import { globalExceptionHandler } from './GlobalExceptionHandler'
 import * as responseHandler from './ResponseProcess'
+import Logger from './Logger'
 
 // class for loading all router
 class RouterLoaderWrapper {
@@ -74,8 +75,7 @@ class RouterLoaderWrapper {
 
   listen() {
     this.app.listen(3002)
-    // eslint-disable-next-line no-console
-    console.log('server is running at port 3002')
+    Logger.info('server is running at port 3002')
   }
 }
 
