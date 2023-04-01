@@ -4,7 +4,6 @@
   "packageManager": "pnpm@8.1.0",
   "description": "",
   "license": "MIT",
-  "funding": "https://github.com/sponsors/antfu",
   "homepage": "https://github.com/cwanii66/dangserver#readme",
   "repository": {
     "type": "git",
@@ -61,7 +60,6 @@
   "devDependencies": {
     "@antfu/eslint-config": "^0.38.2",
     "@antfu/ni": "^0.21.2",
-    "@antfu/utils": "^0.7.2",
     "@types/fs-extra": "^11.0.1",
     "@types/node": "^18.15.11",
     "bumpp": "^9.1.0",

@@ -3,9 +3,9 @@ import Router from 'koa-router'
 
 // type of userinfo
 interface UserInfo {
-  username: string
-  password: string
-  age: number
+  username?: string
+  password?: string
+  age?: number
 }
 
 const router = new Router()

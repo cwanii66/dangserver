@@ -4,13 +4,14 @@ import Router from 'koa-router'
 import body from 'koa-body'
 import json from 'koa-json'
 import type Koa from 'koa'
+import { globalExceptionHandler } from './GlobalExceptionHandler'
 
 // class for loading all router
 class RouterLoaderWrapper {
   app!: Koa
   static instance: RouterLoaderWrapper = new RouterLoaderWrapper()
 
-  // initialize routerloader
+  // initialize router loader
   init(app: Koa) {
     this.app = app
     this.loadAllRouterWrapper()
@@ -38,6 +39,7 @@ class RouterLoaderWrapper {
     const allAbsoluteFilePaths = this.getAbsoluteFilePaths()
     const rootRouter = this.getRootRouter()
     this.loadAllRouter(allAbsoluteFilePaths, rootRouter)
+    this.handleException()
     this.loadRootRouter(rootRouter)
   }
 
@@ -48,6 +50,11 @@ class RouterLoaderWrapper {
     this.app.use(json())
     this.app.use(body())
     return rootRouter
+  }
+
+  // handle exception
+  handleException() {
+    this.app.use(globalExceptionHandler)
   }
 
   loadRootRouter(rootRouter: Router) {
