@@ -8,6 +8,7 @@ interface DbConfig {
   user: string
   password: string
   database: string
+  [key: string]: unknown
 }
 interface EnvConfig {
   dev: DbConfig
@@ -21,7 +22,7 @@ class Config {
 
   constructor() {
     // ensure the process.env.NODE_ENV is a union type of 'dev' | 'prod'
-    this.env = process.env.NODE_ENV as keyof EnvConfig | 'prod'
+    this.env = process.env.NODE_ENV as keyof EnvConfig ?? 'prod'
     this.initConfig()
   }
 
@@ -45,17 +46,33 @@ class Config {
   }
 
   getDbConfig(): DbConfig
-  getDbConfig(key: string): string
-  getDbConfig(key?: string): DbConfig | string | number | boolean {
-    if (this.isDbConfigKeys(key) && key.length > 0)
+  getDbConfig(key: keyof DbConfig): string | number
+  getDbConfig(key?: any): any {
+    if (key && this.isDbConfigKeys(key))
       return this.envConfig[this.env][key]
     else
       return this.envConfig[this.env]
   }
 
-  // judge the key is DbConfig keys
+  // change db config outside
+  setDbConfig(data: DbConfig): void
+  setDbConfig<K extends keyof DbConfig>(key: K, value: any): void
+  setDbConfig(data: any, value?: any): void {
+    if (typeof data === 'object') {
+      this.envConfig[this.env] = { ...this.envConfig[this.env], ...data }
+    }
+    else if (!this.isDbConfigKeys(data)) {
+      throw new Error('key is not DbConfig keys')
+    }
+    else if (data && this.isDbConfigKeys(data)) {
+      // update DbConfig properties
+      this.envConfig[this.env][data] = value
+    }
+  }
+
+  // judge whether the key is DbConfig keys
   isDbConfigKeys(key: any): key is keyof DbConfig {
-    return key in this.envConfig[this.env]
+    return Object.hasOwn(this.envConfig[this.env], key)
   }
 }
 
