@@ -32,7 +32,7 @@ class Config {
         host: 'localhost',
         user: 'admin',
         password: '123',
-        database: 'dangdang',
+        database: 'test',
         port: 3306,
       },
       prod: {
@@ -62,7 +62,7 @@ class Config {
       this.envConfig[this.env] = { ...this.envConfig[this.env], ...data }
     }
     else if (!this.isDbConfigKeys(data)) {
-      throw new Error('key is not DbConfig keys')
+      throw new Error('added key is incompatible with DbConfig')
     }
     else if (data && this.isDbConfigKeys(data)) {
       // update DbConfig properties

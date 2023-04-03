@@ -3,7 +3,7 @@ import type Koa from 'koa'
 import Logger from '../common/Logger'
 
 export async function globalExceptionHandler(ctx: Context, next: Koa.Next) {
-  Logger.error('enter common exception handler')
+  Logger.debug('enter common exception handler')
   try {
     await next()
   }
