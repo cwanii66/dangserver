@@ -57,7 +57,9 @@
     "koa-router": "^12.0.0",
     "log4js": "^6.9.1",
     "mysql": "^2.18.1",
-    "nodemon": "^2.0.22"
+    "nodemon": "^2.0.22",
+    "sequelize": "^6.30.0",
+    "sequelize-typescript": "^2.1.5"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.38.2",
