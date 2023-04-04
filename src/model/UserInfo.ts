@@ -4,4 +4,5 @@ export interface UserInfo {
   password: string
   address: string
   valid: number
+  age: number
 }

@@ -1,6 +1,7 @@
 import type { Context } from 'koa'
 import Router from 'koa-router'
 import userDao from '../dao/UserDao'
+import { addUser } from '../dao/UserDaoDefine'
 
 const router = new Router()
 
@@ -15,8 +16,10 @@ router.get('/finduserinfo/:username/:password', async (ctx: Context) => {
 
 // post request -> add user
 router.post('/adduser', async (ctx: Context) => {
-  const { username, age } = ctx.request.body
-  ctx.body = `add user: ${username}, password: ${age}`
+  const addedUserinfo = ctx.request.body
+  const data = await addUser(addedUserinfo)
+
+  ctx.body = ctx.success(data.get({ plain: true }))
 })
 
 export default router
