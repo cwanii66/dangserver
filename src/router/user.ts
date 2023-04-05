@@ -1,7 +1,6 @@
 import type { Context } from 'koa'
 import Router from 'koa-router'
-import userDao from '../dao/UserDao'
-import { addUser } from '../dao/UserDaoDefine'
+import { addUser, countUserinfo, findByLike, findByUsmAndAddr, findUserByProps, findUserByUsrAndPsw, findUserWithPager } from '../dao/UserDaoDefine'
 
 const router = new Router()
 
@@ -9,9 +8,42 @@ router.prefix('/usermodule')
 
 router.get('/finduserinfo/:username/:password', async (ctx: Context) => {
   const { username, password } = ctx.params
-  const userInfo = await userDao.findUserInfo(username, password)
+  const users = await findUserByUsrAndPsw(username, password)
+  ctx.body = ctx.success(users)
+})
 
-  ctx.body = ctx.success(`find user info by username: ${username}`)
+// find by props
+router.get('/finduserbyprops', async (ctx: Context) => {
+  const users = await findUserByProps()
+  ctx.body = ctx.success(users)
+})
+
+// fuzzy query
+router.get('/findbylike/:key', async (ctx: Context) => {
+  const { key } = ctx.params
+  const users = await findByLike(key)
+  ctx.body = ctx.success(users)
+})
+
+// count userinfo
+router.get('/countuserinfo', async (ctx: Context) => {
+  const count = await countUserinfo()
+  ctx.body = ctx.success(count)
+})
+
+// find by username and address
+router.get('/findbyusmaddr', async (ctx: Context) => {
+  const users = await findByUsmAndAddr()
+  ctx.body = ctx.success(users)
+})
+
+// find user with pagination
+router.get('/finduserwithpager/:pageNo/:pageSize', async (ctx: Context) => {
+  const { pageNo, pageSize } = ctx.params
+  const os = (pageNo - 1) * pageSize // offset
+  const ps = Number(pageSize as string) // pageSize
+  const users = await findUserWithPager(os, ps)
+  ctx.body = ctx.success(users)
 })
 
 // post request -> add user
