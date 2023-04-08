@@ -32,7 +32,7 @@ class Config {
         host: 'localhost',
         user: 'admin',
         password: '123',
-        database: 'test',
+        database: 'dangdang',
         port: 3306,
       },
       prod: {

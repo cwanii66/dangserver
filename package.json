@@ -39,7 +39,7 @@
     "prepublishOnly": "nr build",
     "release": "bumpp && npm publish",
     "start": "esno src/index.ts",
-    "test": "vitest",
+    "test": "cross-env NODE_ENV=dev vitest",
     "typecheck": "tsc --noEmit"
   },
   "peerDependencies": {
