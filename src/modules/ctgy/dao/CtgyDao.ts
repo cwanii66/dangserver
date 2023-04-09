@@ -1,10 +1,12 @@
-import { findSecondCtgyByFirstCtgyId } from '../defModel/OneToMany'
+import { sequelize } from '../../BaseDao'
 
 class CtgyDao {
   static ctgyDao: CtgyDao = new CtgyDao()
 
-  async findSecThrdCtgys(firstctgyId: string) {
-    return findSecondCtgyByFirstCtgyId(+firstctgyId)
+  async findSecThrdCtgys(firstctgyId: number) {
+    const sql = `select * from secondctgy sc inner join thirdctgy tc on sc.secondctgyId = tc.secondctgyId where firstctgyId = ${firstctgyId}`
+    const ret = await sequelize.query(sql, { type: 'SELECT' })
+    return ret
   }
 }
 
