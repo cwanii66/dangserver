@@ -1,6 +1,7 @@
 // import necessary modules from vitest
 import { describe, expect, it } from 'vitest'
 import { findSecondCtgyByFirstCtgyId } from '../src/modules/ctgy/defModel/OneToMany'
+import { getSubItemList, secThrdCtgys } from '../src/types/Ctgy'
 
 // test case for findSecondCtgyByFirstCtgyId
 describe('findSecondCtgyByFirstCtgyId', () => {
@@ -12,27 +13,127 @@ describe('findSecondCtgyByFirstCtgyId', () => {
           "firstctgyId": 1,
           "secondctgyId": 1,
           "secondgyname": "0-2岁",
-          "thirdctgy.secondctgyId": 1,
-          "thirdctgy.thirdctgyId": 1,
-          "thirdctgy.thirdname": "图画故事",
+          "thirdctgys": [
+            {
+              "secondctgyId": 1,
+              "thirdctgyId": 1,
+              "thirdname": "图画故事",
+            },
+            {
+              "secondctgyId": 1,
+              "thirdctgyId": 2,
+              "thirdname": "认知",
+            },
+            {
+              "secondctgyId": 1,
+              "thirdctgyId": 3,
+              "thirdname": "益智游戏",
+            },
+            {
+              "secondctgyId": 1,
+              "thirdctgyId": 4,
+              "thirdname": "纸板书",
+            },
+            {
+              "secondctgyId": 1,
+              "thirdctgyId": 5,
+              "thirdname": "艺术课堂",
+            },
+            {
+              "secondctgyId": 1,
+              "thirdctgyId": 6,
+              "thirdname": "入园准备",
+            },
+          ],
         },
         {
           "firstctgyId": 1,
-          "secondctgyId": 1,
-          "secondgyname": "0-2岁",
-          "thirdctgy.secondctgyId": 1,
-          "thirdctgy.thirdctgyId": 2,
-          "thirdctgy.thirdname": "认知",
+          "secondctgyId": 2,
+          "secondgyname": "3-6岁",
+          "thirdctgys": [
+            {
+              "secondctgyId": 2,
+              "thirdctgyId": 7,
+              "thirdname": "绘本",
+            },
+            {
+              "secondctgyId": 2,
+              "thirdctgyId": 8,
+              "thirdname": "科普百科",
+            },
+            {
+              "secondctgyId": 2,
+              "thirdctgyId": 9,
+              "thirdname": "少儿英语",
+            },
+            {
+              "secondctgyId": 2,
+              "thirdctgyId": 10,
+              "thirdname": "乐高学习",
+            },
+            {
+              "secondctgyId": 2,
+              "thirdctgyId": 11,
+              "thirdname": "入学准备",
+            },
+          ],
         },
         {
           "firstctgyId": 1,
-          "secondctgyId": 1,
-          "secondgyname": "0-2岁",
-          "thirdctgy.secondctgyId": 1,
-          "thirdctgy.thirdctgyId": 3,
-          "thirdctgy.thirdname": "益智游戏",
+          "secondctgyId": 3,
+          "secondgyname": "7-10岁",
+          "thirdctgys": [
+            {
+              "secondctgyId": 3,
+              "thirdctgyId": 12,
+              "thirdname": "文学",
+            },
+            {
+              "secondctgyId": 3,
+              "thirdctgyId": 13,
+              "thirdname": "科普百科",
+            },
+            {
+              "secondctgyId": 3,
+              "thirdctgyId": 14,
+              "thirdname": "卡通动漫",
+            },
+            {
+              "secondctgyId": 3,
+              "thirdctgyId": 15,
+              "thirdname": "童话",
+            },
+            {
+              "secondctgyId": 3,
+              "thirdctgyId": 16,
+              "thirdname": "少儿英语",
+            },
+          ],
         },
       ]
     `)
+  })
+})
+
+// getSubItemList
+describe('getSubItemList', () => {
+  it('should return subList', async () => {
+    expect(getSubItemList(secThrdCtgys, ['thirdctgyId', 'thirdname']).slice(0, 3))
+      .toMatchInlineSnapshot(`
+        [
+          {
+            "thirdctgyId": 1,
+            "thirdname": "图画故事",
+          },
+          {
+            "thirdctgyId": 2,
+            "thirdname": "认知",
+          },
+          {
+            "thirdctgyId": 3,
+            "thirdname": "益智游戏",
+          },
+        ]
+      `)
   })
 })
