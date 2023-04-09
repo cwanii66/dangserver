@@ -3,6 +3,7 @@ import { describe, expect, it } from 'vitest'
 import { findSecondCtgyByFirstCtgyId } from '../src/modules/ctgy/defModel/OneToMany'
 import { getSubItemList, secThrdCtgys } from '../src/types/Ctgy'
 import { getNoReptItm } from '../src/types/Ctgy2'
+import { combine } from '../src/types/Ctgy3'
 
 // test case for findSecondCtgyByFirstCtgyId
 describe('findSecondCtgyByFirstCtgyId', () => {
@@ -262,6 +263,29 @@ describe('getOneItemValuesFrmArr', () => {
             "thirdname": "励志",
           },
         ]
+      `)
+  })
+})
+
+// combine
+describe('combine', () => {
+  it('get intersection object', async () => {
+    expect(combine(
+      {
+        username: 'chris',
+        userid: 1,
+      },
+      {
+        phone: '123',
+        username: 'wong',
+      },
+    ))
+      .toMatchInlineSnapshot(`
+        {
+          "phone": "123",
+          "userid": 1,
+          "username": "wong",
+        }
       `)
   })
 })
