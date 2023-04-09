@@ -2,6 +2,7 @@
 import { describe, expect, it } from 'vitest'
 import { findSecondCtgyByFirstCtgyId } from '../src/modules/ctgy/defModel/OneToMany'
 import { getSubItemList, secThrdCtgys } from '../src/types/Ctgy'
+import { getNoReptItm } from '../src/types/Ctgy2'
 
 // test case for findSecondCtgyByFirstCtgyId
 describe('findSecondCtgyByFirstCtgyId', () => {
@@ -118,20 +119,147 @@ describe('findSecondCtgyByFirstCtgyId', () => {
 // getSubItemList
 describe('getSubItemList', () => {
   it('should return subList', async () => {
-    expect(getSubItemList(secThrdCtgys, ['thirdctgyId', 'thirdname']).slice(0, 3))
+    expect(getSubItemList(secThrdCtgys, ['secondctgyId', 'secondgyname']))
       .toMatchInlineSnapshot(`
         [
           {
+            "secondctgyId": 1,
+            "secondgyname": "0-2岁",
+          },
+          {
+            "secondctgyId": 1,
+            "secondgyname": "0-2岁",
+          },
+          {
+            "secondctgyId": 1,
+            "secondgyname": "0-2岁",
+          },
+          {
+            "secondctgyId": 1,
+            "secondgyname": "0-2岁",
+          },
+          {
+            "secondctgyId": 1,
+            "secondgyname": "0-2岁",
+          },
+          {
+            "secondctgyId": 1,
+            "secondgyname": "0-2岁",
+          },
+          {
+            "secondctgyId": 2,
+            "secondgyname": "3-6岁",
+          },
+          {
+            "secondctgyId": 2,
+            "secondgyname": "3-6岁",
+          },
+          {
+            "secondctgyId": 2,
+            "secondgyname": "3-6岁",
+          },
+          {
+            "secondctgyId": 2,
+            "secondgyname": "3-6岁",
+          },
+          {
+            "secondctgyId": 2,
+            "secondgyname": "3-6岁",
+          },
+          {
+            "secondctgyId": 3,
+            "secondgyname": "7-10岁",
+          },
+          {
+            "secondctgyId": 3,
+            "secondgyname": "7-10岁",
+          },
+          {
+            "secondctgyId": 3,
+            "secondgyname": "7-10岁",
+          },
+          {
+            "secondctgyId": 3,
+            "secondgyname": "7-10岁",
+          },
+          {
+            "secondctgyId": 3,
+            "secondgyname": "7-10岁",
+          },
+          {
+            "secondctgyId": 4,
+            "secondgyname": "11-14岁",
+          },
+          {
+            "secondctgyId": 4,
+            "secondgyname": "11-14岁",
+          },
+          {
+            "secondctgyId": 4,
+            "secondgyname": "11-14岁",
+          },
+          {
+            "secondctgyId": 4,
+            "secondgyname": "11-14岁",
+          },
+          {
+            "secondctgyId": 4,
+            "secondgyname": "11-14岁",
+          },
+          {
+            "secondctgyId": 4,
+            "secondgyname": "11-14岁",
+          },
+          {
+            "secondctgyId": 4,
+            "secondgyname": "11-14岁",
+          },
+          {
+            "secondctgyId": 4,
+            "secondgyname": "11-14岁",
+          },
+          {
+            "secondctgyId": 4,
+            "secondgyname": "11-14岁",
+          },
+        ]
+      `)
+  })
+})
+
+// get restructured list
+describe('getOneItemValuesFrmArr', () => {
+  it('return regrouped list', async () => {
+    expect(getNoReptItm(secThrdCtgys, 'secondctgyId'))
+      .toMatchInlineSnapshot(`
+        [
+          {
+            "firstctgyId": 1,
+            "secondctgyId": 1,
+            "secondgyname": "0-2岁",
             "thirdctgyId": 1,
             "thirdname": "图画故事",
           },
           {
-            "thirdctgyId": 2,
-            "thirdname": "认知",
+            "firstctgyId": 1,
+            "secondctgyId": 2,
+            "secondgyname": "3-6岁",
+            "thirdctgyId": 7,
+            "thirdname": "绘本",
           },
           {
-            "thirdctgyId": 3,
-            "thirdname": "益智游戏",
+            "firstctgyId": 1,
+            "secondctgyId": 3,
+            "secondgyname": "7-10岁",
+            "thirdctgyId": 12,
+            "thirdname": "文学",
+          },
+          {
+            "firstctgyId": 1,
+            "secondctgyId": 4,
+            "secondgyname": "11-14岁",
+            "thirdctgyId": 17,
+            "thirdname": "励志",
           },
         ]
       `)
