@@ -1,12 +1,13 @@
 import { sequelize } from '../../BaseDao'
+import { convert } from '../../../types/Ctgy3'
 
 class CtgyDao {
   static ctgyDao: CtgyDao = new CtgyDao()
 
   async findSecThrdCtgys(firstctgyId: number) {
-    const sql = `select * from secondctgy sc inner join thirdctgy tc on sc.secondctgyId = tc.secondctgyId where firstctgyId = ${firstctgyId}`
-    const ret = await sequelize.query(sql, { type: 'SELECT' })
-    return ret
+    const sql = `select * from secondctgy sc inner join thirdctgy tc on sc.secondctgyId = tc.secctgyid where firstctgyId = ${firstctgyId}`
+    const ret: any[] = (await sequelize.query(sql))[0]
+    return convert(ret)
   }
 }
 
