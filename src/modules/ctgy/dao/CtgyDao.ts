@@ -1,5 +1,5 @@
 import { sequelize } from '../../BaseDao'
-import { convert } from '../../../types/Ctgy3'
+import { convert } from '../ctgyUtils'
 
 class CtgyDao {
   static ctgyDao: CtgyDao = new CtgyDao()

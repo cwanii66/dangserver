@@ -1,4 +1,20 @@
-import type { EleOfArrPick, ElementOfArray } from './Ctgy'
+import type { UnionIntersection } from '../types'
+import type { EleOfArrPick, ElementOfArray } from './ctgy/CtgyTypes'
+
+export function getSubItemList<
+  T extends EleOfArrPick<T>[],
+  K extends keyof ElementOfArray<T>,
+>(originalList: T, expectedKeys: K[]): Pick<ElementOfArray<T>, K>[] {
+  return originalList.map((item) => {
+    const obj = expectedKeys.reduce((preVal, curVal) => {
+      return {
+        ...preVal,
+        [curVal]: item[curVal],
+      }
+    }, {})
+    return obj
+  }) as Pick<ElementOfArray<T>, K>[]
+}
 
 // get composed array consists of single property
 function getOneItemValuesFrmArr<
@@ -34,4 +50,9 @@ export function getNoReptItm<
     return false
   })
   return ret
+}
+
+export function combine<T extends object[]>(...args: T): UnionIntersection<T[number]>
+export function combine<T extends object[]>(...o: T) {
+  return o.reduce((preVal, curVal) => ({ ...preVal, ...curVal }), {})
 }
