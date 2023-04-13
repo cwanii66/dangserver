@@ -11,12 +11,13 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "lib": [
       "ESNext",
-      "DOM"
     ],
     "typeRoots": ["node_modules/@types"],
-    "types": ["vite/client", "node"],
+    "types": ["node"],
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
