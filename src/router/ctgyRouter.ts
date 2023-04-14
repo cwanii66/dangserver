@@ -2,7 +2,6 @@ import type { Context } from 'koa'
 import Router from 'koa-router'
 import { success } from '../common/ResponseProcess'
 import ctgyDao from '../modules/ctgy/dao/CtgyDao'
-// import ctgyController from '../controller/CtgyController'
 
 const router = new Router()
 

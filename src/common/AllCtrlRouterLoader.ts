@@ -5,6 +5,7 @@ import body from 'koa-body'
 import json from 'koa-json'
 import type Koa from 'koa'
 import { globalExceptionHandler } from './GlobalExceptionHandler'
+import * as responseHandler from './ResponseProcess'
 import Logger from './Logger'
 
 class AllCtrlRouterLoader {
@@ -14,6 +15,7 @@ class AllCtrlRouterLoader {
   // initialize router loader
   init(app: Koa) {
     this.app = app
+    Object.assign(this.app.context, responseHandler)
     this.loadMiddlewares() // load all middlewares
     this.storeRootRouterToCtx() // store root router
     this.loadAllCtrlRouterWrapper() // load controller router
@@ -28,6 +30,7 @@ class AllCtrlRouterLoader {
 
   storeRootRouterToCtx() {
     const rootRouter = new Router()
+    rootRouter.prefix('/dang')
     this.app.context.rootRouter = rootRouter
     this.loadRootRouter(rootRouter)
   }
