@@ -2,7 +2,7 @@ import allCtrlRouterLoader from '../common/AllCtrlRouterLoader'
 
 type MethodType = 'get' | 'post' | 'put' | 'delete'
 interface Constructor { new (...args: any[]): any }
-// modulePath -> /   /asd   asdf   falsy value
+
 export function controller(modulePath = '/') {
   function getFullPath(reqPath: string) {
     const modulePathRegex = /^\/?[a-zA-Z]{1,15}$/
@@ -13,7 +13,7 @@ export function controller(modulePath = '/') {
         modulePath = ''
     }
     else {
-      console.error('controller decorator error: illegel path')
+      console.error('path error: illegel path...')
     }
     return modulePath.concat(reqPath)
   }

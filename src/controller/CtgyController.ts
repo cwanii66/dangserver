@@ -1,7 +1,6 @@
 import type { Context } from 'koa'
-import { get } from '../decorator'
+import { controller, get } from '../decorator'
 import ctgyDao from '../modules/ctgy/dao/CtgyDao'
-import { controller } from '../decorator'
 
 @controller('/ctgymodule')
 class CtgyController {
