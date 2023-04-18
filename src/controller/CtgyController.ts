@@ -12,6 +12,12 @@ class CtgyController {
     const ret = await ctgyDao.findSecThrdCtgys(firstctgyid)
     ctx.body = ctx.success(ret)
   }
+
+  @get('/findFirstCtgys')
+  async findFirstCtgys(ctx: Context) {
+    const data = ctx.success(await ctgyDao.findFirstCtgys())
+    ctx.body = data
+  }
 }
 
 export default new CtgyController()
