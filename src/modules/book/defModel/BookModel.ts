@@ -44,12 +44,12 @@ class BookModel {
         },
         secondctgyId: {
           type: DataTypes.INTEGER,
-          field: 'secondctgyid',
+          field: 'secondctgyId',
           allowNull: true,
         },
         thirdctgyId: {
           type: DataTypes.INTEGER,
-          field: 'thirdctgyid',
+          field: 'thirdctgyId',
           allowNull: true,
         },
         originalprice: {

@@ -16,6 +16,16 @@ class BookDao {
     })
   }
 
+  // find books by thirdctgyId
+  async findBooksByThirdctgyId(thirdctgyId: number) {
+    return booksModel.findAll({
+      raw: true,
+      where: {
+        thirdctgyId,
+      },
+    })
+  }
+
   async findBooksByPager(offset: number, pageSize: number) {
     return booksModel.findAll({
       raw: true,
