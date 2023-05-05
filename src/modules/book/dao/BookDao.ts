@@ -4,6 +4,15 @@ import { booksModel } from '../defModel/BookModel'
 class BookDao {
   static bookDao: BookDao = new BookDao()
 
+  async findAllBooksBySecondCtgyId(secondCtgyId: number) {
+    return booksModel.findAll({
+      raw: true,
+      where: {
+        secondctgyId: secondCtgyId,
+      },
+    })
+  }
+
   async findBooksByLike(key: string) {
     const searchKey = `%${key}%`
     return booksModel.findAll({

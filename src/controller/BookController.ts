@@ -18,6 +18,13 @@ class BookController {
     ctx.body = ctx.success(ret)
   }
 
+  @get('/findAllBooksBySecondCtgyId/:secondCtgyId')
+  async findAllBooksBySecondCtgyId(ctx: Context) {
+    const { secondCtgyId } = ctx.params
+    const ret = await bookDao.findAllBooksBySecondCtgyId(+secondCtgyId)
+    ctx.body = ctx.success(ret)
+  }
+
   @get('/findBooksByPager/:offset/:pageSize')
   async findBooksByPager(ctx: Context) {
     const { offset, pageSize } = ctx.params

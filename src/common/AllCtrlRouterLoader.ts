@@ -67,8 +67,8 @@ class AllCtrlRouterLoader {
   }
 
   listen() {
-    this.app.listen(3002)
-    Logger.info('server is running at port 3002')
+    this.app.listen(8005)
+    Logger.info('server is running at port 8005...')
   }
 }
 
