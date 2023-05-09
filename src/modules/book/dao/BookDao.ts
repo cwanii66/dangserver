@@ -26,9 +26,12 @@ class BookDao {
   }
 
   // find books by thirdctgyId
-  async findBooksByThirdctgyId(thirdctgyId: number) {
+  async findBooksByThirdctgyId(thirdctgyId: number, sortField = 'originalprice', sortType = 'desc') {
     return booksModel.findAll({
       raw: true,
+      order: [
+        [sortField, sortType],
+      ],
       where: {
         thirdctgyId,
       },

@@ -11,10 +11,10 @@ class BookController {
     ctx.body = ctx.success(ret)
   }
 
-  @get('/findBooksByThirdctgyId/:thirdctgyId')
+  @get('/findBooksByThirdctgyId/:thirdctgyId/:sortField/:sortType')
   async findBooksByThirdctgyId(ctx: Context) {
-    const { thirdctgyId } = ctx.params
-    const ret = await bookDao.findBooksByThirdctgyId(+thirdctgyId)
+    const { thirdctgyId, sortField, sortType } = ctx.params
+    const ret = await bookDao.findBooksByThirdctgyId(+thirdctgyId, sortField, sortType)
     ctx.body = ctx.success(ret)
   }
 
