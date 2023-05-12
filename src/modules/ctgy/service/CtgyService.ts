@@ -1,18 +1,17 @@
 import ctgyDao from '../dao/CtgyDao'
-import redisConfig from '../../../config/RedisConfig'
+import redisUtil from '../../../common/RedisUtil'
 
 class CtgyService {
   static ctgyService: CtgyService = new CtgyService()
   async findFirstCtgys() {
-    const redisClient = redisConfig.createRdbCli()
-    const rdbFirstCtgys = await redisClient.hget('firstCtgyHash', 'firstCtgys')
+    const rdbFirstCtgys = await redisUtil.hget('firstCtgyHash', 'firstCtgys')
     if (!rdbFirstCtgys) {
       const firstCtgys = await ctgyDao.findFirstCtgys()
-      redisClient.hset('firstCtgyHash', 'firstCtgys', JSON.stringify(firstCtgys))
+      redisUtil.hset('firstCtgyHash', 'firstCtgys', firstCtgys)
       return firstCtgys
     }
     else {
-      return JSON.parse(rdbFirstCtgys)
+      return rdbFirstCtgys
     }
   }
 }
