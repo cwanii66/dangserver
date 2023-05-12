@@ -1,11 +1,10 @@
 import type { Context } from 'koa'
 import { controller, get } from '../decorator'
 import ctgyDao from '../modules/ctgy/dao/CtgyDao'
+import ctgyService from '../modules/ctgy/service/CtgyService'
 
 @controller('/ctgymodule')
 class CtgyController {
-  // static ctgyController: CtgyController = new CtgyController()
-
   @get('/findSecThrdCtgys/:firstctgyid')
   async findSecThrdCtgy(ctx: Context) {
     const { firstctgyid } = ctx.params
@@ -15,7 +14,7 @@ class CtgyController {
 
   @get('/findFirstCtgys')
   async findFirstCtgys(ctx: Context) {
-    const data = ctx.success(await ctgyDao.findFirstCtgys())
+    const data = ctx.success(await ctgyService.findFirstCtgys())
     ctx.body = data
   }
 }

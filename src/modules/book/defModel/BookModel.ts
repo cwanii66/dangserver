@@ -53,13 +53,18 @@ class BookModel {
           allowNull: true,
         },
         originalprice: {
-          type: DataTypes.DECIMAL(10, 2),
+          type: DataTypes.DOUBLE(10, 2),
           field: 'originalprice',
           allowNull: true,
         },
         discount: {
-          type: DataTypes.DECIMAL(10, 2),
+          type: DataTypes.DOUBLE(6, 2),
           field: 'discount',
+          allowNull: true,
+        },
+        discountprice: {
+          type: DataTypes.DOUBLE(10, 2),
+          field: 'discountprice',
           allowNull: true,
         },
       },
