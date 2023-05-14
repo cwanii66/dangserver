@@ -1,4 +1,5 @@
 import { resolve } from 'node:path'
+import fg from 'fast-glob'
 import type { Dialect } from 'sequelize'
 import { Sequelize } from 'sequelize-typescript'
 import dbConfig from '../config/DbConfig'
@@ -32,8 +33,9 @@ class BaseDao {
   }
 
   addModels() {
-    const modelPath = resolve(__dirname, '../decoratorModel')
-    this.sequelize.addModels([modelPath])
+    const _pattern = resolve(__dirname, './decoratorModel/*.ts')
+    const modelPaths = fg.sync(_pattern)
+    this.sequelize.addModels(modelPaths)
   }
 }
 
