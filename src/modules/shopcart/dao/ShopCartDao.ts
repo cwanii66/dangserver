@@ -1,6 +1,6 @@
 import { sequelize } from '../../BaseDao'
 import ShopCart from '../../decoratorModel/ShopCart'
-import type { ShopCartRaw } from '../raw'
+import type { ShopCartRaw, ShopCartRawWithShopCartId } from '../raw'
 
 class ShopCartDao {
   static shopCartDao: ShopCartDao = new ShopCartDao()
@@ -18,6 +18,19 @@ class ShopCartDao {
     const sql = `insert into shopcart (bookisbn, bookname, userid, bookprice, purchasenum, bookpicname) 
       values ('${shopCart.bookisbn}', '${shopCart.bookname}', ${shopCart.userid}, ${shopCart.bookprice}, ${shopCart.purchasenum}, '${shopCart.bookpicname}')`
     return await sequelize.query(sql)
+  }
+
+  async updateShopCart(shopCart: ShopCartRawWithShopCartId): Promise<[any, any]> {
+    const sql = `update shopcart set purchasenum = ${shopCart.purchasenum} where shopcartid = ${shopCart.shopcartid}`
+    return await sequelize.query(sql)
+  }
+
+  async deleteShopCart(shopCartId: number) {
+    return ShopCart.destroy({
+      where: {
+        shopcartid: shopCartId,
+      },
+    })
   }
 }
 
