@@ -4,7 +4,7 @@ import { DataTypes } from 'sequelize'
 @Table({
   tableName: 'keyword',
 })
-export default class KeyWord extends Model<KeyWord> {
+export default class Keyword extends Model<Keyword> {
   @Column({
     type: DataTypes.INTEGER,
     allowNull: false,

@@ -17,7 +17,7 @@ export default class HistoryKeyWord extends Model<HistoryKeyWord> {
     type: DataTypes.STRING,
     allowNull: false,
   })
-  keyword!: string
+  historykeyword!: string
 
   @Column({
     type: DataTypes.INTEGER,

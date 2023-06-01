@@ -1,7 +1,3 @@
-function isString(value: any): value is string {
-  return typeof value === 'string'
-}
-
 interface DbConfig {
   host: string
   port: number
