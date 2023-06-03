@@ -4,6 +4,13 @@ import searchService from '../modules/search/service/SearchService'
 
 @controller('/searchmodule')
 class SearchController {
+  @get('/searchHistoryKeywords')
+  async searchHistoryKeywords(ctx: Context) {
+    const { historyKeyword } = ctx.params
+    const historyKeywords = await searchService.searchHistoryKeywords()
+    ctx.body = ctx.success(historyKeywords)
+  }
+
   @post('/addHistoryKeyword')
   async addHistoryKeyword(ctx: Context) {
     const { historyKeyword } = ctx.request.body
@@ -23,6 +30,13 @@ class SearchController {
     const { keyword } = ctx.params
     const keywords = await searchService.searchKeywords(keyword)
     ctx.body = ctx.success(keywords)
+  }
+
+  @get('/searchHistoryKeywordsDesc')
+  async searchHistoryKeywordsDesc(ctx: Context) {
+    const { historyKeyword } = ctx.params
+    const historyKeywords = await searchService.searchHistoryKeywordsDesc()
+    ctx.body = ctx.success(historyKeywords)
   }
 }
 

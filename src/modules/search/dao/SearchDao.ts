@@ -27,7 +27,7 @@ class SearchDao {
   }
 
   // search whether exist the history keywords
-  async searchHistoryKeywords(historyKeyword: string) {
+  async searchHistoryKeyword(historyKeyword: string) {
     return await HistoryKeyword.findOne({
       raw: true,
       where: {
@@ -35,6 +35,21 @@ class SearchDao {
           [Op.like]: `%${historyKeyword}%`,
         },
       },
+    })
+  }
+
+  // search history keywords list
+  async searchHistoryKeywords() {
+    return await HistoryKeyword.findAll({
+      raw: true,
+    })
+  }
+
+  // search history keywords list order by clickcount desc
+  async searchHistoryKeywordsDesc() {
+    return await HistoryKeyword.findAll({
+      raw: true,
+      order: [['clickcount', 'DESC']],
     })
   }
 

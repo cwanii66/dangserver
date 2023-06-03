@@ -4,7 +4,7 @@ class SearchService {
   static searchService: SearchService = new SearchService()
 
   async addOrUpdateHistoryKeyword(historyKeyword: string) {
-    const historyKeywordObj = await searchDao.searchHistoryKeywords(historyKeyword)
+    const historyKeywordObj = await searchDao.searchHistoryKeyword(historyKeyword)
     if (historyKeywordObj) {
       const [updateInfo] = await searchDao.updateHistoryKeywordClickCount(historyKeyword)
       return updateInfo.affectedRows
@@ -15,8 +15,16 @@ class SearchService {
     }
   }
 
+  async searchHistoryKeywords() {
+    return await searchDao.searchHistoryKeywords()
+  }
+
   async searchKeywords(keyword: string) {
     return await searchDao.searchKeywords(keyword)
+  }
+
+  async searchHistoryKeywordsDesc() {
+    return await searchDao.searchHistoryKeywordsDesc()
   }
 }
 
