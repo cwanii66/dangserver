@@ -64,6 +64,13 @@ class SearchDao {
     const sql = `update historykeyword set clickcount = clickcount + 1 where historykeyword = '${historyKeyword}'`
     return await sequelize.query(sql)
   }
+
+  // delete history keywords
+  async delHistoryKeywords() {
+    return await HistoryKeyword.destroy({
+      where: {},
+    })
+  }
 }
 
 export default SearchDao.getInstance()

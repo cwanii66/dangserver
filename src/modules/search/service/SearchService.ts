@@ -26,6 +26,10 @@ class SearchService {
   async searchHistoryKeywordsDesc() {
     return await searchDao.searchHistoryKeywordsDesc()
   }
+
+  async delSearchHistory() {
+    return await searchDao.delHistoryKeywords()
+  }
 }
 
 export default SearchService.searchService

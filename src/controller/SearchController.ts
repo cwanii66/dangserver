@@ -1,12 +1,11 @@
 import type { Context } from 'koa'
-import { controller, get, post, put } from '../decorator'
+import { controller, del, get, post, put } from '../decorator'
 import searchService from '../modules/search/service/SearchService'
 
 @controller('/searchmodule')
 class SearchController {
   @get('/searchHistoryKeywords')
   async searchHistoryKeywords(ctx: Context) {
-    const { historyKeyword } = ctx.params
     const historyKeywords = await searchService.searchHistoryKeywords()
     ctx.body = ctx.success(historyKeywords)
   }
@@ -34,9 +33,14 @@ class SearchController {
 
   @get('/searchHistoryKeywordsDesc')
   async searchHistoryKeywordsDesc(ctx: Context) {
-    const { historyKeyword } = ctx.params
     const historyKeywords = await searchService.searchHistoryKeywordsDesc()
     ctx.body = ctx.success(historyKeywords)
+  }
+
+  @del('/delHistoryKeywords')
+  async delHistoryKeywords(ctx: Context) {
+    const affectedRows = await searchService.delSearchHistory()
+    ctx.body = ctx.success(affectedRows)
   }
 }
 
