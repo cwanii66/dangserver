@@ -31,9 +31,7 @@ class SearchDao {
     return await HistoryKeyword.findOne({
       raw: true,
       where: {
-        historykeyword: {
-          [Op.like]: `%${historyKeyword}%`,
-        },
+        historykeyword: historyKeyword,
       },
     })
   }

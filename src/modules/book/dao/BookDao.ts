@@ -1,5 +1,6 @@
 import { Op } from 'sequelize'
 import { booksModel } from '../defModel/BookModel'
+import { getNoReptItm } from '../../commonModuleFn'
 
 class BookDao {
   static bookDao: BookDao = new BookDao()
@@ -43,6 +44,42 @@ class BookDao {
       raw: true,
       limit: pageSize,
       offset,
+    })
+  }
+
+  async findBooksByAutoCompKeyword(autoCompKeyword: string) {
+    return booksModel.findAll({
+      raw: true,
+      where: {
+        bookname: {
+          [Op.like]: `%${autoCompKeyword}%`,
+        },
+      },
+    })
+  }
+
+  async findPublishersByAutoCompKeyword(autoCompKeyword: string) {
+    const publisherInfos = await booksModel.findAll({
+      raw: true,
+      attributes: ['publishid', 'publishername'],
+      where: {
+        bookname: {
+          [Op.like]: `%${autoCompKeyword}%`,
+        },
+      },
+    }) as any[]
+    const noReptPublisherInfos = getNoReptItm(publisherInfos, 'publishid')
+    return noReptPublisherInfos
+  }
+
+  async findBooksByPublisherIds(publishIds: number[]) {
+    return booksModel.findAll({
+      raw: true,
+      where: {
+        publishid: {
+          [Op.in]: publishIds,
+        },
+      },
     })
   }
 }

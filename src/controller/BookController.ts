@@ -1,5 +1,5 @@
 import type { Context } from 'koa'
-import { controller, get } from '../decorator'
+import { controller, get, post } from '../decorator'
 import bookDao from '../modules/book/dao/BookDao'
 
 @controller('/bookmodule')
@@ -30,6 +30,27 @@ class BookController {
     const { offset, pageSize } = ctx.params
     const ret = await bookDao.findBooksByPager(+offset, +pageSize)
     ctx.body = ctx.success(ret)
+  }
+
+  @get('/findBooksByAutoCompKeyword/:autoCompKeyword')
+  async findBooksByAutoCompKeyword(ctx: Context) {
+    const { autoCompKeyword } = ctx.params
+    const ret = await bookDao.findBooksByAutoCompKeyword(autoCompKeyword)
+    ctx.body = ctx.success(ret)
+  }
+
+  @get('/findPublishersByAutoCompKeyword/:autoCompKeyword')
+  async findPublishersByAutoCompKeyword(ctx: Context) {
+    const { autoCompKeyword } = ctx.params
+    const publishers = await bookDao.findPublishersByAutoCompKeyword(autoCompKeyword)
+    ctx.body = ctx.success(publishers)
+  }
+
+  @post('/findBooksByPublisherIds')
+  async findBooksByPublisherIds(ctx: Context) {
+    const publisherIds: number[] = ctx.request.body
+    const books = await bookDao.findBooksByPublisherIds(publisherIds)
+    ctx.body = ctx.success(books)
   }
 }
 

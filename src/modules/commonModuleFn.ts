@@ -17,7 +17,7 @@ export function getSubItemList<
 }
 
 // get composed array consists of single property
-function getOneItemValuesFrmArr<
+export function getOneItemValuesFrmArr<
   T extends EleOfArrPick<T>[],
   K extends keyof ElementOfArray<T>,
   E = ElementOfArray<T>,
@@ -26,7 +26,7 @@ function getOneItemValuesFrmArr<
 }
 
 // dedupe array
-function getNoReptValItm(arr: unknown[]) {
+export function getNoReptValItm(arr: unknown[]) {
   const uiqArr: unknown[] = []
   return arr.filter(item =>
     !uiqArr.includes(item) && uiqArr.push(item),
