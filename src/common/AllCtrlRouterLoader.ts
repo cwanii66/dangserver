@@ -3,6 +3,7 @@ import fg from 'fast-glob'
 import Router from 'koa-router'
 import body from 'koa-body'
 import json from 'koa-json'
+import koajwt from 'koa-jwt'
 import type Koa from 'koa'
 import { globalExceptionHandler } from './GlobalExceptionHandler'
 import * as responseHandler from './ResponseProcess'
@@ -26,6 +27,7 @@ class AllCtrlRouterLoader {
     this.app.use(json())
     this.app.use(body())
     this.app.use(globalExceptionHandler)
+    this.app.use(koajwt({ secret: 'cwanii' }).unless({ path: [/^\/dang\/usermodule\/login/, /^\/dang\/ctgymodule/] }))
   }
 
   storeRootRouterToCtx() {
