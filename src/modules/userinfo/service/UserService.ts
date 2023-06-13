@@ -6,8 +6,10 @@ class UserService {
 
   public async login(username: string, password: string) {
     const userInfo = await UserDao.findOneUser(username, password)
-    const token = this.createJwt(userInfo!)
-    userInfo!.token = token
+    if (userInfo) {
+      const token = this.createJwt(userInfo!)
+      userInfo!.token = token
+    }
     return userInfo
   }
 

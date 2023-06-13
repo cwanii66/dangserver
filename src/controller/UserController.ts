@@ -8,7 +8,10 @@ class UserController {
   async login(ctx: Context) {
     const { username, password } = ctx.request.body
     const userInfo = await userService.login(username, password)
-    ctx.body = ctx.success(userInfo)
+    if (userInfo)
+      ctx.body = ctx.success(userInfo)
+    else
+      ctx.body = ctx.fail('用户名或密码错误')
   }
 }
 
