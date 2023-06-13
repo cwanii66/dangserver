@@ -1,11 +1,16 @@
 import { Op } from 'sequelize'
-import { userModel } from '../defModel'
-// import userModel from '../../decoratorModel/Userinfo'
+import userModel from '../../decoratorModel/Userinfo'
 import { sequelize } from '../../BaseDao'
-import type { UserInfo } from '@/types'
 
 class UserDao {
-  static addUser(userinfo: Partial<UserInfo>) {
+  static findOneUser(username: string, password: string) {
+    return userModel.findOne({
+      raw: true,
+      where: { username, password },
+    })
+  }
+
+  static addUser(userinfo: any) {
     return userModel.create(userinfo)
   }
 

@@ -1,5 +1,3 @@
-// this file is for test only with decorator model
-
 import { Column, Model, Table } from 'sequelize-typescript'
 import { DataTypes } from 'sequelize'
 
@@ -44,4 +42,12 @@ export default class Userinfo extends Model<Userinfo> {
     allowNull: false,
   })
   age!: number
+
+  @Column({
+    type: DataTypes.DATE,
+    allowNull: true,
+  })
+  birth!: string
+
+  token!: string
 }
