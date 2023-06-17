@@ -27,7 +27,15 @@ class AllCtrlRouterLoader {
     this.app.use(json())
     this.app.use(body())
     this.app.use(globalExceptionHandler)
-    this.app.use(koajwt({ secret: 'cwanii' }).unless({ path: [/^\/dang\/usermodule\/login/, /^\/dang\/ctgymodule/] }))
+    this.app.use(
+      koajwt({ secret: 'cwanii' })
+        .unless({
+          path: [
+            /^\/dang\/usermodule\/login/,
+            /^\/dang\/ctgymodule/,
+            /^\/dang\/commentmodule\/findCommentList/],
+        }),
+    )
   }
 
   storeRootRouterToCtx() {
