@@ -8,6 +8,6 @@ export class CommentController {
   async getCommentList(ctx: Context) {
     const { isbn } = ctx.params
     const commentsWithReplyList = await commentDao.findCommentsByISBN(isbn)
-    ctx.body = commentsWithReplyList
+    ctx.body = ctx.success(commentsWithReplyList)
   }
 }

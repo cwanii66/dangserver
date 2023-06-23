@@ -33,7 +33,9 @@ class AllCtrlRouterLoader {
           path: [
             /^\/dang\/usermodule\/login/,
             /^\/dang\/ctgymodule/,
-            /^\/dang\/commentmodule\/findCommentList/],
+            /^\/dang\/commentmodule\/findCommentList/,
+            /^\/dang\/replymodule\/addReply/,
+          ],
         }),
     )
   }

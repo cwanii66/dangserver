@@ -1,6 +1,3 @@
-import { Op } from 'sequelize'
-import Comment from '../decoratorModel/Comment'
-import Reply from '../decoratorModel/Reply'
 import { sequelize } from '../../modules/BaseDao'
 import { convert } from './convert'
 
