@@ -25,13 +25,6 @@ class BookController {
     ctx.body = ctx.success(ret)
   }
 
-  @get('/findBooksByPager/:offset/:pageSize')
-  async findBooksByPager(ctx: Context) {
-    const { offset, pageSize } = ctx.params
-    const ret = await bookDao.findBooksByPager(+offset, +pageSize)
-    ctx.body = ctx.success(ret)
-  }
-
   @get('/findBooksByAutoCompKeyword/:autoCompKeyword')
   async findBooksByAutoCompKeyword(ctx: Context) {
     const { autoCompKeyword } = ctx.params
@@ -58,6 +51,13 @@ class BookController {
     const { isbn } = ctx.params
     const book = await bookDao.findBooksByISBN(isbn)
     ctx.body = ctx.success(book)
+  }
+
+  @get('/findBooksByPager/:currentPageNo')
+  async findBooksByPager(ctx: Context) {
+    const { currentPageNo } = ctx.params
+    const currentPageData = await bookDao.findBooksByPager(currentPageNo)
+    ctx.body = ctx.success(currentPageData)
   }
 }
 

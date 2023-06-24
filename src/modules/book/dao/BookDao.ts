@@ -1,6 +1,8 @@
 import { Op } from 'sequelize'
 import { booksModel } from '../defModel/BookModel'
 import { getNoReptItm } from '../../commonModuleFn'
+import pager, { pagerEvaluator } from '../../../common/Pager'
+import { sequelize } from '../../../modules/BaseDao'
 
 class BookDao {
   static bookDao: BookDao = new BookDao()
@@ -39,13 +41,16 @@ class BookDao {
     })
   }
 
-  async findBooksByPager(offset: number, pageSize: number) {
-    return booksModel.findAll({
-      raw: true,
-      limit: pageSize,
-      offset,
-    })
+  async findBooksByPager(currentPageNo: string) {
+    const basePagerSql = 'select * from books'
+    const countPageField = 'isbn'
+    const totalRecordNumSql = 'select count(isbn) from books'
+    await this.bookPager(currentPageNo, basePagerSql, totalRecordNumSql, countPageField)
+    return pager.getCurrentPageData()
   }
+
+  @pagerEvaluator(sequelize)
+  private async bookPager(currentPageNo: string, basePagerSql: string, totalRecordNumSql: string, countPageField: string) {}
 
   async findBooksByAutoCompKeyword(autoCompKeyword: string) {
     return booksModel.findAll({

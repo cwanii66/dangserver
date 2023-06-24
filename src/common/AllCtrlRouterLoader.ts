@@ -35,6 +35,7 @@ class AllCtrlRouterLoader {
             /^\/dang\/ctgymodule/,
             /^\/dang\/commentmodule\/findCommentList/,
             /^\/dang\/replymodule\/addReply/,
+            /^\/dang\/bookmodule\/findBooksByPager/,
           ],
         }),
     )
