@@ -34,7 +34,7 @@ class Pager {
   getCurrentPageData() {
     return {
       currentPageNo: this.currentPageNo,
-      currentpageDataList: this.currentPageData,
+      currentPageDataList: this.currentPageData,
       totalPageNum: this.totalPageNum,
     }
   }
@@ -43,7 +43,7 @@ const pager = Pager.pager
 
 export function pagerEvaluator(sequelize: Sequelize) {
   return function pagerDecorator(_targetPrototype: Object, _propertyKey: string, descriptor: PropertyDescriptor) {
-    const originalMethod = descriptor.value
+    // const originalMethod = descriptor.value
     descriptor.value = async function (...args: PagerParams) {
       const [currentPageNo, basePagerSql, totalRecordNumSql, countPageField] = args
       const firstRecordPerPage = pager.getFirstRecordPerPage(currentPageNo)

@@ -50,7 +50,10 @@ class BookDao {
   }
 
   @pagerEvaluator(sequelize)
-  private async bookPager(currentPageNo: string, basePagerSql: string, totalRecordNumSql: string, countPageField: string) {}
+  /**
+   * @params consistent with decorator functions, but not used here
+   */
+  private async bookPager(_currentPageNo: string, _basePagerSql: string, _totalRecordNumSql: string, _countPageField: string) {}
 
   async findBooksByAutoCompKeyword(autoCompKeyword: string) {
     return booksModel.findAll({
