@@ -1,5 +1,13 @@
 import { combine, getNoReptItm, getSubItemList } from '../commonModuleFn'
-import type { SecThrdCtgyList } from './CtgyTypes'
+
+export type SecThrdCtgyList = {
+  secondctgyId: number
+  secondgyname: string
+  firstctgyId: number
+  thirdctgyId: number
+  thirdname: string
+  secctgyid: number
+}[]
 
 export function convert(secThrdCtgys: SecThrdCtgyList) {
   const secCtgyList = getSubItemList(secThrdCtgys, ['secondctgyId', 'secondgyname', 'firstctgyId'])

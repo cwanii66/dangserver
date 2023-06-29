@@ -1,5 +1,4 @@
-import type { UnionIntersection } from '../types'
-import type { EleOfArrPick, ElementOfArray } from './ctgy/CtgyTypes'
+import type { EleOfArrPick, ElementOfArray, UnionIntersection } from '../types'
 
 export function getSubItemList<
   T extends EleOfArrPick<T>[],
@@ -55,4 +54,8 @@ export function getNoReptItm<
 export function combine<T extends object[]>(...args: T): UnionIntersection<T[number]>
 export function combine<T extends object[]>(...o: T) {
   return o.reduce((preVal, curVal) => ({ ...preVal, ...curVal }), {})
+}
+
+export function addRecordToArrItm<T extends EleOfArrPick<T>[]>(arr: T, record: Record<string, unknown>) {
+  return arr.map(item => ({ ...item, ...record }))
 }
