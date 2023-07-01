@@ -2,6 +2,7 @@ import type { OrderInfo } from '../raw'
 import orderDao from '../dao/OrderDao'
 import { addRecordToArrItm } from '../../commonModuleFn'
 import shopCartService from '../../shopcart/service/ShopCartService'
+import { convert } from './convert'
 
 class OrderService {
   static orderService: OrderService = new OrderService()
@@ -26,6 +27,11 @@ class OrderService {
     }
     order.orderDetailList = finalOrderDetails
     return order // sync dbOrderId and dbOrderDetailId
+  }
+
+  async findOrderByUserId(customerId: number) {
+    const orderListRaw = (await orderDao.findOrderByUserId(customerId))[0]
+    return convert(orderListRaw)
   }
 }
 

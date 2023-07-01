@@ -17,6 +17,15 @@ class OrderDao {
     `
     return sequelize.query(orderDetailSql)
   }
+
+  async findOrderByUserId(customerId: number): Promise<[any, any]> {
+    const findByUserSql = `select 
+      oi.orderid, oi.ordertime, oi.customerid, oi.orderstatus, 
+      od.orderdetailid, od.bookname, od.bookprice, od.bookpicname, od.orderid, od.purchasenum 
+        from orderinfo as oi inner join orderdetail as od
+        on oi.orderid=od.orderid and customerid=${customerId}`
+    return sequelize.query(findByUserSql)
+  }
 }
 
 export default OrderDao.orderDao
