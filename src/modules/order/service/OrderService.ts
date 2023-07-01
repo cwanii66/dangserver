@@ -33,6 +33,11 @@ class OrderService {
     const orderListRaw = (await orderDao.findOrderByUserId(customerId))[0]
     return convert(orderListRaw)
   }
+
+  async updateOrderStatusByOrderId(orderId: number) {
+    const affectedRows: number = (await orderDao.updateOrderStatusByOrderId(orderId))[0].affectedRows
+    return affectedRows
+  }
 }
 
 export default OrderService.orderService

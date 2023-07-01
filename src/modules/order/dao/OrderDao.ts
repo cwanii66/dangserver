@@ -26,6 +26,11 @@ class OrderDao {
         on oi.orderid=od.orderid and customerid=${customerId}`
     return sequelize.query(findByUserSql)
   }
+
+  async updateOrderStatusByOrderId(orderId: number): Promise<[any, any]> {
+    const updateSql = `update orderinfo set orderstatus=-1 where orderid=${orderId}`
+    return sequelize.query(updateSql)
+  }
 }
 
 export default OrderDao.orderDao

@@ -38,6 +38,7 @@ class AllCtrlRouterLoader {
             /^\/dang\/bookmodule\/findBooksByPager/,
             /^\/dang\/ordermodule\/submitorder/,
             /^\/dang\/ordermodule\/findorderbyuserid/,
+            /^\/dang\/ordermodule\/updateOrderStatusByOrderId/,
           ],
         }),
     )
