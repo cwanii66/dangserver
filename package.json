@@ -35,6 +35,7 @@
   ],
   "scripts": {
     "dev": "cross-env NODE_ENV=dev nodemon --watch src/ -e ts --exec ts-node ./src/app.ts",
+    "prod": "cross-env NODE_ENV=prod nodemon --watch src/ -e ts --exec ts-node ./src/app.ts",
     "lint": "eslint .",
     "prepublishOnly": "nr build",
     "release": "bumpp && npm publish",

@@ -3,6 +3,7 @@ import redis from 'koa-redis'
 interface RDbConfig {
   host: string
   port: number
+  password?: string
 }
 
 interface EnvConfig {
@@ -38,8 +39,9 @@ class RedisConfig {
         port: 6379,
       },
       prod: {
-        host: '127.0.0.1',
+        host: '8.130.89.209',
         port: 6379,
+        password: 'cwanii66',
       },
     }
   }

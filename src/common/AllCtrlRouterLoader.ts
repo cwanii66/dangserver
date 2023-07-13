@@ -83,8 +83,18 @@ class AllCtrlRouterLoader {
   }
 
   listen() {
-    this.app.listen(8005)
-    Logger.info('server is running at port 8005...')
+    let port = 0
+    const curEnv = process.env.NODE_ENV || 'dev'
+    switch (curEnv) {
+      case 'dev':
+        port = 8005
+        break
+      case 'prod':
+        port = 8002
+        break
+    }
+    this.app.listen(port)
+    Logger.info(`server is running at port ${port}...`)
   }
 }
 

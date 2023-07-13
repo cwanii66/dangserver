@@ -32,9 +32,9 @@ class Config {
         port: 3306,
       },
       prod: {
-        host: 'www.xxx.com',
-        user: 'root',
-        password: '123',
+        host: '8.130.89.209',
+        user: 'admin',
+        password: 'cwanii66',
         database: 'dangdang',
         port: 3306,
       },
